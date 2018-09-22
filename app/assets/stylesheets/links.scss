@@ -1,3 +1,129 @@
 // Place all the styles related to the Links controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#links {
+   ul {
+      display: inline-block;
+      width: 49%;
+      text-align: right;
+      vertical-align: middle; 
+   }
+   li {
+      position: relative;
+      padding: 10px 0;
+      margin: 0 0 25px 0;
+      border-bottom: 1px solid #d7d7d7; 
+   }
+   .icon {
+      display: inline-block;
+      right: 20px;
+      width: 24px;
+      height: 27px;
+      margin: -12px 0 0 0;
+      opacity: 0.4;
+    }
+    .icon [type="submit"] {
+      width: 24px;
+      height: 24px;
+      color: transparent;
+      background-color: transparent;
+      cursor: pointer;
+      border: none; 
+    }
+
+   .icon:hover {
+      color: #b00b00;
+      opacity: 1;
+    }
+
+   @keyframes link-highlight {
+     0% {
+       background: #8f8;
+     }
+     100% {
+       background: none;
+     }
+   }
+   
+   .link-highlight {
+     animation: link-highlight 1s;
+   }
+}
+
+.link_form {
+   dt {
+      padding: 0 0 25px 0;
+      margin: 0;
+      padding: 0;
+   }
+   
+   dd {
+      padding: 0 0 15px 0;
+      margin: 0;
+      padding: 0;
+    }
+
+   fieldset {
+      border: none;
+      margin: 0;
+      padding: 0;
+   }
+
+   input[type="text"] {
+      width: 40%;
+      height: 58px;
+      padding: 15px 20px;
+      font: normal 20px "PT Sans", Helvetica, Arial, sans-serif;
+      border: 1px solid #a4a4a4;
+      border-radius: 8px;
+      box-sizing: border-box; 
+    }
+    
+    input[type="submit"] {
+      padding: 12px 45px;
+      margin: 0 40px 0 0;
+      font: normal 24px "PT Sans", Helvetica, Arial, sans-serif;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      background: #dd5f4f;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #d13b28;
+      cursor: pointer; 
+    }
+    
+    fieldset.actions input[type="reset"] {
+      font: normal 24px "PT Sans", Helvetica, Arial, sans-serif;       
+      font-size: 20px;
+      color: #666666;
+      border: 0px;
+      background-color: inherit;
+      cursor: pointer;
+    }
+    
+    fieldset.actions input[type="reset"]:hover {
+      color: #b00b00;
+    }
+}
+
+#create_link input[type="text"]{
+   width: 100%;
+}
+
+#has-error {
+   border: 1px solid #dd3333;
+ }
+
+.help-block {
+   color: #dd3333;
+}
+
+.original_link {
+   display: inline-block;
+   font-size: 12px;
+   color: #a4a4a4
+}
+
