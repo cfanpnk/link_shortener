@@ -1,0 +1,5 @@
+$("<%= escape_javascript(render @link) %>").prependTo("#links");
+$('#has-error').removeAttr('id');
+$('#create_link')[0].reset();
+$('span.help-block')[0].remove();
+$('span.help-block')[1].remove();

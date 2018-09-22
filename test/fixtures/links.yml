@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+fullscreen:
+  original_link: https://fullscreenmedia.co/
+  hash_key: xyz123
+invalid_url:
+  original_link: google
+  hash_key: def345
+no_protocol_url:
+  original_link: ni.com
+  hash_key: efg431

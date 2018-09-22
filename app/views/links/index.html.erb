@@ -1,0 +1,15 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
+<%= form_with(model: @link, id: "create_link", class: "link_form") do |f| %>
+  <dl>
+    <dd>
+      <%= f.text_field :original_link, placeholder: "Your original link" %>
+    </dd>
+  </dl>
+  <fieldset class="actions">
+    <%= f.submit %>
+    <input type="reset" value="Clear">
+  </fieldset>
+<% end %>

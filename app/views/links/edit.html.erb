@@ -1,0 +1,34 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
+<div class="title">
+   <h2>
+   Editing "<%= @link.hash_key%>"
+   </h2>
+</div>
+
+<br>
+
+<%= form_for :link, url: link_path(@link), method: :patch, html: { class: "link_form" } do |f| %>
+  <%= hidden_field_tag 'link_id', @link.id %>
+  <dl>
+    <dt>
+   	<%= f.label :original_link %>
+    </dt>
+    <dd>
+      <%= f.text_field :original_link %>
+    </dd>
+    <br>
+    <dt>
+   	<%= f.label :hash_key %>
+    </dt>
+    <dd>
+      <%= f.text_field :hash_key %>
+    </dd>
+  </dl>
+  <fieldset class="actions">
+   <%= f.submit %>
+   <a href="/">Cancel</a>
+  </fieldset>
+<% end %>
