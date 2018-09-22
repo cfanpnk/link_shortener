@@ -33,6 +33,7 @@ class LinksController < ApplicationController
         format.json { render :show, status: :created, location: @link }
       else
         puts @link.errors.full_messages
+        format.html { render :new }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
