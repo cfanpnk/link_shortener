@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Hash:</strong>
-  <%= @link.hash %>
+  <strong>Short Link:</strong>
+  <a href="<%= full_url + @link.hash_key %>"><%= request.host + '/' + @link.hash_key %></a>
 </p>
 
 <p>
