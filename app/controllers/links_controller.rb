@@ -26,6 +26,7 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
+    @stat = @link.create_stat
 
     respond_to do |format|
       if @link.save
@@ -41,6 +42,8 @@ class LinksController < ApplicationController
     if @link.expired
       render_404
     else
+      stat = @link.stat
+      stat.increase_counter
       redirect_to @link.original_link
     end
   end
