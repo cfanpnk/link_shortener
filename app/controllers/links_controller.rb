@@ -30,7 +30,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'A new short link was created.' }
+        format.html { redirect_to @link }
       else
         format.html { redirect_to root_path, notice: 'Something went wrong, please try again.' }
       end
