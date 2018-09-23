@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20180923155157) do
 
   create_table "links", force: :cascade do |t|
-    t.string "original_link"
-    t.string "hash_key"
+    t.string "original_link", null: false
+    t.string "hash_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "expired", default: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180923155157) do
 
   create_table "stats", force: :cascade do |t|
     t.integer "link_id"
-    t.integer "count"
+    t.integer "count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["link_id"], name: "index_stats_on_link_id"

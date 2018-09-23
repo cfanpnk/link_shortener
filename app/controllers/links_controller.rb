@@ -30,10 +30,8 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'A new short link was created.' }
-        format.json { render :show, status: :created, location: @link }
       else
-        format.html { render :new }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: 'Something went wrong, please try again.' }
       end
     end
   end

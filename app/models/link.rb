@@ -1,8 +1,9 @@
 class Link < ApplicationRecord
+  has_one :stat
   before_validation :add_default_url_protocol
   validates :original_link, presence: true
   # validates :hash_key, uniqueness: { case_sensitive: false }
-  after_create :next_key
+  before_create :next_key
 
   URL_REGEXP = /\A((http|https):\/\/)*[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
   validates :original_link, format: { with: URL_REGEXP, message: 'You provided invalid URL' }
@@ -14,19 +15,15 @@ class Link < ApplicationRecord
   end
 
   def next_key
-    self.hash_key = short_str(self.original_link, self.id.to_s)
-    self.save
-  end
-
-  def expired?
-    self.expired ? true : false
+    self.hash_key = generate_key(self.original_link)
   end
 
   private
 
-  def short_str(url, random_seed)
+  def generate_key(long_url)
     chars = ('a'..'z').to_a + ('0'..'9').to_a + ('A'..'Z').to_a
-    hex = Digest::MD5.hexdigest(random_seed + random_seed)
+    random_seed = Time.now.to_s
+    hex = Digest::MD5.hexdigest(long_url + random_seed)
     sub_hex_len = hex.length / 8
     short_str = Array.new(4)
     sub_hex_len.times do |i| 
