@@ -35,7 +35,6 @@ class LinksController < ApplicationController
       @link = Link.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
       params.require(:link).permit(:original_link, :hash_key, :expired)
     end

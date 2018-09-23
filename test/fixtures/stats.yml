@@ -1,5 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-fullscreen:
+active_link:
+  id: 1
   link_id: 1
   count: 0
