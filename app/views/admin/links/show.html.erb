@@ -1,0 +1,19 @@
+<%= semantic_form_for :link, url: admin_link_path, method: :patch, html: { class: "link_form" } do |form| %>
+  <%= form.inputs "Admin Operation" do %>
+    <p>
+      <strong>Original Link:</strong>
+      <%= @link.original_link %>
+    </p>
+    <p>
+      <strong>Short Link:</strong>
+      <a href="<%= full_url + @link.hash_key %>"><%= request.host + '/' + @link.hash_key %></a>
+    </p>
+    <%= form.input :expired, :as => :boolean %>
+  <% end %>
+  <%= form.actions do %>
+    <li><%= form.submit "Update" %></li>
+  <% end %>
+<% end %>
+
+
+<%= link_to 'Back', links_path %>

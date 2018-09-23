@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Short Link:</strong>
   <a href="<%= full_url + @link.hash_key %>"><%= request.host + '/' + @link.hash_key %></a>
 </p>
 
 <p>
-  <strong>Original link:</strong>
+  <strong>Original Link:</strong>
   <%= @link.original_link %>
 </p>
 
-<%= link_to 'Edit', edit_link_path(@link) %> |
+<p>
+  <strong>Admin Link:</strong>
+  <a href="<%= admin_link_path %>"><%= request.host + admin_link_path %></a>
+</p>
+
 <%= link_to 'Back', links_path %>

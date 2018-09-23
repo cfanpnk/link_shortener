@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_link
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_link
   # GET /links
@@ -39,37 +39,13 @@ class LinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /links/1
-  # PATCH/PUT /links/1.json
-  def update
-    respond_to do |format|
-      if @link.update(link_params)
-        format.html { redirect_to root_path, notice: 'The short link was updated.' }
-        format.json { render :show, status: :ok, location: @link }
-      else
-        format.html { render :edit }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /links/1
-  # DELETE /links/1.json
-  def destroy
-    @link.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'The short link was deleted.' }
-      format.json { head :no_content }
-    end
-  end
-
   def go
     @link = Link.find_by_hash_key!(params[:hash_key])
     redirect_to @link.original_link
   end
 
   private
-  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
@@ -77,7 +53,7 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:original_link, :hash_key)
+      params.require(:link).permit(:original_link, :hash_key, :expired)
     end
 
     def invalid_link

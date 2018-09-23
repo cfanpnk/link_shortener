@@ -18,6 +18,10 @@ class Link < ApplicationRecord
     self.save
   end
 
+  def expired?
+    self.expired ? true : false
+  end
+
   private
 
   def short_str(url, random_seed)
