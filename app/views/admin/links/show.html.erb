@@ -8,6 +8,10 @@
       <strong>Shortened URL:</strong>
       <a href="<%= full_url + @link.hash_key %>"><%= request.host + '/' + @link.hash_key %></a>
     </p>
+    <p>
+      <strong>Clicks:</strong>
+      <%= @link.stat.count %>
+    </p>
     <%= form.input :expired, :as => :boolean %>
   <% end %>
   <%= form.actions do %>
