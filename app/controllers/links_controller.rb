@@ -32,7 +32,6 @@ class LinksController < ApplicationController
         format.html { redirect_to @link, notice: 'A new short link was created.' }
         format.json { render :show, status: :created, location: @link }
       else
-        puts @link.errors.full_messages
         format.html { render :new }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end

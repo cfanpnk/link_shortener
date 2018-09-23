@@ -1,15 +1,15 @@
 <p>
-  <strong>Short Link:</strong>
+  <strong>Shortened URL:</strong>
   <a href="<%= full_url + @link.hash_key %>"><%= request.host + '/' + @link.hash_key %></a>
 </p>
 
 <p>
-  <strong>Original Link:</strong>
+  <strong>Original URL:</strong>
   <%= @link.original_link %>
 </p>
 
 <p>
-  <strong>Admin Link:</strong>
+  <strong>Admin URL:</strong>
   <a href="<%= admin_link_path %>"><%= request.host + admin_link_path %></a>
 </p>
 

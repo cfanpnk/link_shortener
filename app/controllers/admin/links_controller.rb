@@ -1,13 +1,16 @@
 class Admin::LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show, :update]
+
+  def show
+  end
 
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to root_path, notice: 'The short link was updated.' }
+        format.html { redirect_to root_path, notice: 'The short link has been expired.' }
         format.json { render :show, status: :ok, location: @link }
       else
-        format.html { render :edit }
+        format.html { render :show }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
