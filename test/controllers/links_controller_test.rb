@@ -26,5 +26,15 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     get '/' + @expired_link.hash_key
     assert_response 404
   end
+
+  test "should show link" do
+    get link_url(@active_link)
+    assert_response :success
+  end
+
+  test "should show admin link" do
+    get admin_link_url(@active_link)
+    assert_response :success
+  end
 end
 
