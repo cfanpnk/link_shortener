@@ -2,38 +2,19 @@ class LinksController < ApplicationController
   before_action :set_link, only: [:show]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_link
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_link
-  # GET /links
-  # GET /links.json
+
   def index
     @link = Link.new
   end
 
-  # GET /links/1
-  # GET /links/1.json
-  def show
-  end
-
-  # GET /links/new
-  def new
-    @link = Link.new
-  end
-
-  # GET /links/1/edit
-  def edit
-  end
-
-  # POST /links
-  # POST /links.json
   def create
     @link = Link.new(link_params)
     @stat = @link.create_stat
 
-    respond_to do |format|
-      if @link.save
-        format.html { redirect_to @link }
-      else
-        format.html { redirect_to root_path, notice: 'Something went wrong, please try again.' }
-      end
+    if @link.save
+      redirect_to @link
+    else
+      redirect_to root_path, notice: "Invalid URL. Please try again." 
     end
   end
 
@@ -50,7 +31,6 @@ class LinksController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
     end

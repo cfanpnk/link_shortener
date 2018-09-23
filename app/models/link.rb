@@ -2,7 +2,6 @@ class Link < ApplicationRecord
   has_one :stat
   before_create :next_key
   before_validation :add_default_url_protocol
-  validates :original_link, presence: true
   validates :hash_key, uniqueness: { case_sensitive: false }
 
   URL_REGEXP = /\A((http|https):\/\/)*[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
