@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link
+  before_action :set_link, only: [:show]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_link
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_link
 
@@ -32,7 +32,7 @@ class LinksController < ApplicationController
   private
 
     def set_link
-      @link = Link.find_by slug: params[:slug]
+      @link = Link.find_by! slug: params[:slug]
     end
 
     def link_params

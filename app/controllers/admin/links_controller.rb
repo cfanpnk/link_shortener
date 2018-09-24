@@ -1,8 +1,7 @@
 class Admin::LinksController < ApplicationController
   before_action :set_link, only: [:show, :update]
-
-  def show
-  end
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_link
+  rescue_from ActiveRecord::RecordInvalid, with: :invalid_link
 
   def update
     respond_to do |format|
@@ -19,7 +18,12 @@ class Admin::LinksController < ApplicationController
   private
 
     def set_link
-      @link = Link.find_by slug: params[:slug]
+      @link = Link.find_by! slug: params[:slug]
+    end
+
+    def invalid_link
+      logger.error "Attempt to access invalid link #{params[:slug]}"
+      redirect_to root_path, notice: 'Invalid link'
     end
 
     def link_params
