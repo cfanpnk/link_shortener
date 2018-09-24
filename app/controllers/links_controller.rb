@@ -19,14 +19,11 @@ class LinksController < ApplicationController
   end
 
   def forward
-    @link = Link.find_by_hash_key!(params[:hash_key])
-    if @link.expired
-      render_404
-    else
-      stat = @link.stat
-      stat.increase_counter
-      redirect_to @link.original_link
-    end
+    @link = Link.fetch_unexpired_link(params[:hash_key])
+    stat = @link.stat
+    stat.increase_counter
+
+    redirect_to @link.original_link, status: :moved_permanently
   end
 
   private
@@ -40,11 +37,6 @@ class LinksController < ApplicationController
     end
 
     def invalid_link
-      logger.error "Attempt to access invalid link #{params[:slug]}"
-      redirect_to root_path, notice: 'Invalid link'
-    end
-
-    def render_404
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
       end
