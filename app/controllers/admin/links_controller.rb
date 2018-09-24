@@ -6,7 +6,7 @@ class Admin::LinksController < ApplicationController
   def expire
     @link.update_attribute(:expired, true)
 
-    redirect_to admin_link_path(@link)
+    redirect_to admin_link_path(@link), notice: "The shortened URL has been expired."
   end
 
   private

@@ -1,3 +1,7 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
 <%= semantic_form_for :link, url: expire_admin_link_path, method: :put, html: { class: "link_form" } do |form| %>
   <%= form.inputs "Admin Operation" do %>
     <p>
