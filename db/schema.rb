@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180924134458) do
+ActiveRecord::Schema.define(version: 20180924163000) do
 
   create_table "links", force: :cascade do |t|
     t.string "original_link", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180924134458) do
     t.datetime "updated_at", null: false
     t.boolean "expired", default: false
     t.string "slug", default: "default", null: false
+    t.index ["hash_key"], name: "index_links_on_hash_key", unique: true
     t.index ["slug"], name: "index_links_on_slug", unique: true
   end
 
