@@ -1,6 +1,6 @@
 class Link < ApplicationRecord
   has_one :stat
-  before_create :next_key
+  before_create :next_key, :set_slug
   before_validation :add_default_url_protocol
   validates :hash_key, uniqueness: { case_sensitive: false }
 
@@ -19,6 +19,10 @@ class Link < ApplicationRecord
 
   def display
     ENV['BASE_URL'] + self.hash_key
+  end
+
+  def to_param
+    slug
   end
 
   private
@@ -42,5 +46,12 @@ class Link < ApplicationRecord
       short_str[i] = out_chars
     end
     short_str.sample
+  end
+
+  def set_slug
+    loop do
+      self.slug = SecureRandom.uuid
+      break unless Link.where(slug: slug).exists?
+    end
   end
 end
