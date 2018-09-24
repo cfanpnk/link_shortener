@@ -19,7 +19,7 @@ class Admin::LinksController < ApplicationController
   private
 
     def set_link
-      @link = Link.find(params[:id])
+      @link = Link.find_by slug: params[:slug]
     end
 
     def link_params
