@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get '/:hash_key' => 'links#go'
 
   namespace :admin do
-    resources :links, only: [:show, :update], param: :slug
+    resources :links, only: [:show, :expire], param: :slug do
+      member do
+        put :expire
+      end
+    end
   end
 end
