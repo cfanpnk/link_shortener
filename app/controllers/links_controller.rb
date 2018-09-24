@@ -18,7 +18,7 @@ class LinksController < ApplicationController
     end
   end
 
-  def go
+  def forward
     @link = Link.find_by_hash_key!(params[:hash_key])
     if @link.expired
       render_404
