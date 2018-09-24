@@ -9,7 +9,7 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(link_params)
-    @stat = @link.create_stat
+    @link.build_stat
 
     if @link.save
       redirect_to @link
