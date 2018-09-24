@@ -14,7 +14,10 @@ class Link < ApplicationRecord
   end
 
   def next_key
-    self.hash_key = generate_key(self.original_link)
+    loop do
+      self.hash_key = generate_key(self.original_link)
+      break unless Link.where(hash_key: hash_key).exists?
+    end
   end
 
   def display
