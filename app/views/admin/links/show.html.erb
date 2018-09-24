@@ -2,11 +2,11 @@
   <%= form.inputs "Admin Operation" do %>
     <p>
       <strong>Original URL:</strong>
-      <%= @link.original_link %>
+      <%= link_to @link.original_link, @link.original_link %>
     </p>
     <p>
       <strong>Shortened URL:</strong>
-      <a href="<%= full_url + @link.hash_key %>"><%= request.host + '/' + @link.hash_key %></a>
+      <%= link_to @link.display, @link.display, target: '_blank' %>
     </p>
     <p>
       <strong>Clicks:</strong>
@@ -20,4 +20,4 @@
 <% end %>
 
 
-<%= link_to 'Back', links_path %>
+<%= link_to 'Back', root_path %>

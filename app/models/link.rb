@@ -17,6 +17,10 @@ class Link < ApplicationRecord
     self.hash_key = generate_key(self.original_link)
   end
 
+  def display
+    ENV['BASE_URL'] + self.hash_key
+  end
+
   private
 
   def generate_key(long_url)
