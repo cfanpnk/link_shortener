@@ -5,12 +5,12 @@
 <%= semantic_form_for :link, url: expire_admin_link_path, method: :put, html: { class: "link_form" } do |form| %>
   <%= form.inputs "Admin Operation" do %>
     <p>
-      <strong>Original URL:</strong>
-      <%= link_to @link.original_link, @link.original_link %>
+      <strong>Shortened URL:</strong>
+      <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key), target: '_blank' %>
     </p>
     <p>
-      <strong>Shortened URL:</strong>
-      <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key) %>
+      <strong>Original URL:</strong>
+      <%= link_to @link.original_link, @link.original_link %>
     </p>
     <p>
       <strong>Clicks:</strong>
