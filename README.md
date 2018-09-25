@@ -1,25 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A link shortner app written in Ruby on Rails.
 
-Things you may want to cover:
+### Ruby version
+Ruby 2.5.0
 
-* Ruby version
+### Rails version
+Rails 5.1.6
 
-* System dependencies
+### System dependencies
+1. This app uses Redis cache. So make sure you start Redis before running the app.
+2. Testing suite requires phantomjs to be installed. You can install it with
+   homebrew on mac:
+   ```
+   brew install phantomjs
+   ```
 
-* Configuration
+### How to run the test suite
+```
+rails test
+rails test:system
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+### Scalability
+This app can hanel 1k urls a day with each getting hit 20k times a day by adding
+the following caches:
+1. A cache that stores the shortened URL with the long URL. No need to hit the
+   database after first visit.
+2. A cache that stores the usage counter. It will write back to db every 100
+   visits.
+3. A cache that stores the stat object. No need to hit the stat table for each
+   visit.
