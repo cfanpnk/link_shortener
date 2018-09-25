@@ -1,11 +1,12 @@
 <p>
   <strong>Shortened URL:</strong>
-  <%= link_to @link.display, @link.display, target: '_blank' %>
+  <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key), target: '_blank' %>
 </p>
 
 <p>
   <strong>Original URL:</strong>
-  <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key) %>
+  <%= link_to @link.original_link, @link.original_link %>
+
 </p>
 
 <p>
