@@ -34,9 +34,9 @@ class Link < ApplicationRecord
     'link:' + hash_key + ':url'
   end
 
-  def self.fetch_unexpired_link(hash_key)
+  def self.fetch_link!(hash_key)
     Rails.cache.fetch(redis_url_key(hash_key)) do
-      Link.find_by!(hash_key: hash_key, expired: false)
+      Link.find_by!(hash_key: hash_key)
     end
   end
 

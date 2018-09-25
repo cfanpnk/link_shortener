@@ -19,11 +19,13 @@ class LinksController < ApplicationController
   end
 
   def forward
-    hash_key = params[:hash_key]
-    @link = Link.fetch_unexpired_link(hash_key)
-    @link.stat.increment_counter(hash_key)
-
-    redirect_to @link.original_link, status: :moved_permanently
+    @link = Link.fetch_link!(params[:hash_key])
+    if @link.expired
+      invalid_link
+    else
+      @link.stat.increment_counter(params[:hash_key])
+      redirect_to @link.original_link, status: :moved_permanently
+    end
   end
 
   private
