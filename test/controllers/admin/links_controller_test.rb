@@ -8,7 +8,7 @@ class Admin::LinksControllerTest < ActionDispatch::IntegrationTest
     }
   end
   test "should expire a shortened URL" do
-    patch admin_link_url(@active_link), params: { link: @link }
-    assert_redirected_to root_path
+    put expire_admin_link_path(@active_link), params: { link: @link }
+    assert_redirected_to admin_link_path(@active_link)
   end
 end

@@ -36,12 +36,5 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     get admin_link_url(@active_link)
     assert_response :success
   end
-
-  test "should increment the counter when visited" do
-    10.times {
-      get '/' + @active_link.hash_key
-    }
-    assert_equal 10, @active_link.stat.count
-  end
 end
 

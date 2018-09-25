@@ -5,10 +5,12 @@ active_link:
   original_link: https://fullscreenmedia.co/
   hash_key: xyz123
   expired: false
+  slug: 56fe4b8b-3b21-4d36-b1ba-020182691b5f
 
 expired_link:
   id: 2
   original_link: http://www.ni.com/
   hash_key: abc123
   expired: true
+  slug: c8345d78-383c-4077-b1e3-7c661b8ff264
 
