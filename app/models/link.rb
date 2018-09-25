@@ -45,19 +45,29 @@ class Link < ApplicationRecord
   def generate_key(long_url)
     chars = ('a'..'z').to_a + ('0'..'9').to_a + ('A'..'Z').to_a
     random_seed = Time.now.to_s
+
+    # MD5 Hash the long_url into a 32 character string
     hex = Digest::MD5.hexdigest(long_url + random_seed)
+
+    # Divide the hash into 4 parts
     sub_hex_len = hex.length / 8
     short_str = Array.new(4)
+
+    # Interate thru the 4 parts
     sub_hex_len.times do |i| 
       out_chars = ""
       j = i + 1
       sub_hex = hex[i * 8...j * 8]
+      # Bit and operation between 0x3FFFFFFF(30) and the base-16 string
+      # Ignore the chars beyond 30
       idx = 0x3FFFFFFF & sub_hex.to_i(16)
+      # 30 chars are divided into 6 parts
       6.times {
         index = 0x0000003D & idx
         out_chars += chars[index]
         idx = idx >> 5
       }
+      # Get 4 keys
       short_str[i] = out_chars
     end
     short_str.sample
