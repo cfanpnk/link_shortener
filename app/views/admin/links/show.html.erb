@@ -6,11 +6,11 @@
   <%= form.inputs "Admin Operation" do %>
     <p>
       <strong>Shortened URL:</strong>
-      <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key), target: '_blank' %>
+      <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key), target: '_blank', class: 'short' %>
     </p>
     <p>
       <strong>Original URL:</strong>
-      <%= link_to @link.original_link, @link.original_link %>
+      <%= link_to @link.original_link, @link.original_link, class: 'original' %>
     </p>
     <p>
       <strong>Clicks:</strong>

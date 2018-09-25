@@ -1,17 +1,17 @@
 <p>
   <strong>Shortened URL:</strong>
-  <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key), target: '_blank' %>
+  <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key), target: '_blank', class: 'short' %>
 </p>
 
 <p>
   <strong>Original URL:</strong>
-  <%= link_to @link.original_link, @link.original_link %>
+  <%= link_to @link.original_link, @link.original_link, class: 'original' %>
 
 </p>
 
 <p>
   <strong>Admin URL:</strong>
-  <%= link_to admin_link_url(@link), admin_link_url(@link) %>
+  <%= link_to admin_link_url(@link), admin_link_url(@link), class: 'admin' %>
 </p>
 
 <%= link_to 'Back', root_path %>
