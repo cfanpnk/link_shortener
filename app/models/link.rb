@@ -35,7 +35,7 @@ class Link < ApplicationRecord
   end
 
   def self.fetch_link!(hash_key)
-    Rails.cache.fetch(redis_url_key(hash_key)) do
+    Rails.cache.fetch(redis_url_key(hash_key), expire_in: 1.hour) do
       Link.find_by!(hash_key: hash_key)
     end
   end

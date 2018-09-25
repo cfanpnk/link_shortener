@@ -26,7 +26,7 @@ class Stat < ApplicationRecord
   end
 
   def self.fetch_link_stat(link)
-    Rails.cache.fetch("stat:#{link.id}") do
+    Rails.cache.fetch("stat:#{link.id}", expire_in: 1.hour) do
       link.stat
     end
   end
