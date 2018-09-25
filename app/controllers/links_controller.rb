@@ -14,7 +14,7 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to @link
     else
-      redirect_to root_path, notice: "Invalid URL. Please try again." 
+      redirect_to root_path, notice: "Invalid URL. Please try again."
     end
   end
 
