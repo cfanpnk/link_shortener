@@ -2,6 +2,8 @@ class Stat < ApplicationRecord
   belongs_to :link
   MAX_CACHE_SIZE = 100
 
+  after_update :clear_cache
+
   def increment_counter(hash_key)
     redis = Redis.current
     key = redis_counter_key(hash_key)
@@ -21,6 +23,16 @@ class Stat < ApplicationRecord
     redis_count = Redis.current.get(redis_counter_key(self.link.hash_key)).to_i
     db_count = self.count || 0
     db_count + redis_count
+  end
+
+  def self.fetch_link_stat(link)
+    Rails.cache.fetch("stat:#{link.id}") do
+      link.stat
+    end
+  end
+
+  def clear_cache
+    Rails.cache.delete("stat:#{self.link.id}")
   end
 end
 

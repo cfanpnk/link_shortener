@@ -23,7 +23,7 @@ class LinksController < ApplicationController
     if @link.expired
       invalid_link
     else
-      @link.stat.increment_counter(params[:hash_key])
+      Stat.fetch_link_stat(@link).increment_counter(params[:hash_key])
       redirect_to @link.original_link, status: :moved_permanently
     end
   end
