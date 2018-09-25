@@ -7,6 +7,8 @@ class Link < ApplicationRecord
   URL_REGEXP = /\A((http|https):\/\/)*[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
   validates :original_link, format: { with: URL_REGEXP, message: 'You provided invalid URL' }
 
+  after_update :clear_cache
+
   def add_default_url_protocol
     unless self.original_link[/\Ahttp:\/\//] || self.original_link[/\Ahttps:\/\//]
       self.original_link = "http://#{self.original_link}"
@@ -22,6 +24,10 @@ class Link < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def clear_cache
+    Rails.cache.delete(self.class.redis_url_key(hash_key))
   end
 
   def self.redis_url_key(hash_key)
