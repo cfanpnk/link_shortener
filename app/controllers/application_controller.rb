@@ -5,9 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def invalid_link
-    respond_to do |format|
-      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-    end
+    render :json => {error: "The link doesn't exist."}, :status => :not_found
   end
 
 end
