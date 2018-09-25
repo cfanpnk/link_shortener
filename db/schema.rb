@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180924163000) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "links", force: :cascade do |t|
     t.string "original_link", null: false
     t.string "hash_key", null: false
@@ -24,11 +27,12 @@ ActiveRecord::Schema.define(version: 20180924163000) do
   end
 
   create_table "stats", force: :cascade do |t|
-    t.integer "link_id"
+    t.bigint "link_id"
     t.integer "count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["link_id"], name: "index_stats_on_link_id"
   end
 
+  add_foreign_key "stats", "links"
 end
