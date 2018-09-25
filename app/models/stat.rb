@@ -1,4 +1,5 @@
 class Stat < ApplicationRecord
+  belongs_to :link
   MAX_CACHE_SIZE = 100
 
   def increment_counter(hash_key)
@@ -6,7 +7,7 @@ class Stat < ApplicationRecord
     key = redis_counter_key(hash_key)
     current_count = redis.incr(key).to_i
     if current_count >= MAX_CACHE_SIZE
-      self.count += count
+      self.count += current_count
       self.save
       redis.set(key, "0")
     end
@@ -14,6 +15,12 @@ class Stat < ApplicationRecord
 
   def redis_counter_key(hash_key)
     'link:' + hash_key + ':counter'
+  end
+
+  def real_count
+    redis_count = Redis.current.get(redis_counter_key(self.link.hash_key)).to_i
+    db_count = self.count || 0
+    db_count + redis_count
   end
 end
 
