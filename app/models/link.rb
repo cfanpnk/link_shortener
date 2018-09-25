@@ -1,6 +1,6 @@
 class Link < ApplicationRecord
   has_one :stat
-  before_create :next_key, :set_slug
+  before_create :generate_next_key, :set_slug
   before_validation :add_default_url_protocol
   validates :hash_key, uniqueness: { case_sensitive: false }
 
@@ -13,7 +13,7 @@ class Link < ApplicationRecord
     end
   end
 
-  def next_key
+  def generate_next_key
     loop do
       self.hash_key = generate_key(self.original_link)
       break unless Link.where(hash_key: hash_key).exists?
