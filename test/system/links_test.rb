@@ -8,6 +8,13 @@ class LinksTest < ApplicationSystemTestCase
     assert_text "Shortened URL"
   end
 
+  test "creating with a invalid URL" do
+    visit root_path
+    fill_in "Paste a URL to shorten it", with: "google"
+    click_on "Create Link"
+    assert_text "Invalid URL. Please try again."
+  end
+
   test "expiring a shortened URL" do
     visit root_path
     fill_in "Paste a URL to shorten it", with: "roosterteeth.com"
