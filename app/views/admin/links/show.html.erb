@@ -10,7 +10,7 @@
     </p>
     <p>
       <strong>Shortened URL:</strong>
-      <%= link_to @link.display, @link.display, target: '_blank' %>
+      <%= link_to display_url_of(@link.hash_key), display_url_of(@link.hash_key) %>
     </p>
     <p>
       <strong>Clicks:</strong>

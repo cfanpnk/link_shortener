@@ -20,10 +20,6 @@ class Link < ApplicationRecord
     end
   end
 
-  def display
-    ENV['BASE_URL'] + self.hash_key
-  end
-
   def to_param
     slug
   end
