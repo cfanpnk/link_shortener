@@ -5,7 +5,6 @@ class Admin::LinksController < ApplicationController
 
   def expire
     @link.update_attribute(:expired, true)
-
     redirect_to admin_link_path(@link), notice: "The shortened URL has been expired."
   end
 
@@ -16,8 +15,9 @@ class Admin::LinksController < ApplicationController
     end
 
     def invalid_link
-      logger.error "Attempt to access invalid link #{params[:slug]}"
-      redirect_to root_path, notice: 'Invalid link'
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      end
     end
 
     def link_params
