@@ -23,7 +23,7 @@ rails test:system
 ```
 
 ### Scalability
-This app can hanel 1k urls a day with each getting hit 20k times a day by adding
+This app can handle 1k urls a day with each getting hit 20k times a day by adding
 the following caches:
 1. A cache that stores the shortened URL with the long URL. No need to hit the
    database after first visit.
