@@ -1,6 +1,6 @@
 # README
 
-A link shortner app written in Ruby on Rails.
+A link shortener app written in Ruby on Rails.
 
 ### Ruby version
 Ruby 2.5.0
