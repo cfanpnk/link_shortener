@@ -33,11 +33,10 @@ class Link < ApplicationRecord
   end
 
   def self.fetch_unexpired_link(hash_key)
+    # Stat.increment_counter(hash_key)
     Rails.cache.fetch(redis_url_key(hash_key)) do
       Link.find_by!(hash_key: hash_key, expired: false)
     end
-    # link.stat.increment_counter
-    # link.original_link
   end
 
   private
