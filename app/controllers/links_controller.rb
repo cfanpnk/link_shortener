@@ -36,9 +36,4 @@ class LinksController < ApplicationController
       params.require(:link).permit(:original_link, :hash_key, :expired)
     end
 
-    def invalid_link
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
-      end
-    end
 end
